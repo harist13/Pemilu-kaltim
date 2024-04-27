@@ -1,0 +1,9 @@
+[{
+  "_id": {
+    "$oid": "6623c05b00c89720cd0e7d42"
+  },
+  "nama": "Muhammad Harist Illyasa",
+  "email": "rivaldivere@gmail.com",
+  "password": "$2y$12$EbzZc0xrIfH2dgH.h9ImwO2mCfT/4DInXPrdZluHqz18peLZ5mUta",
+  "role": "admin"
+}]
