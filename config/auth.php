@@ -35,17 +35,24 @@ return [
     |
     */
 
-    'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admins',
-        ],
+   'guards' => [
+    'web' => [
+        'driver' => 'session',
+        'provider' => 'users',
     ],
-
+    'admin' => [
+        'driver' => 'session',
+        'provider' => 'admins',
+    ],
+    'pegawai' => [ // tambahkan guard untuk pegawai
+        'driver' => 'session',
+        'provider' => 'pegawais',
+    ],
+    'masyarakat' => [ // tambahkan guard untuk masyarakat
+        'driver' => 'session',
+        'provider' => 'masyarakats',
+    ],
+],
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -64,21 +71,23 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
-        ],
-
-        'admins' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
-        ],
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+    'users' => [
+        'driver' => 'eloquent',
+        'model' => env('AUTH_MODEL', App\Models\User::class),
     ],
-
+    'admins' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Admin::class,
+    ],
+    'pegawais' => [ // tambahkan provider untuk pegawai
+        'driver' => 'eloquent',
+        'model' => App\Models\Admin::class,
+    ],
+    'masyarakats' => [ // tambahkan provider untuk masyarakat
+        'driver' => 'eloquent',
+        'model' => App\Models\Admin::class,
+    ],
+],
     /*
     |--------------------------------------------------------------------------
     | Resetting Passwords
