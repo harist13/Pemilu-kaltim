@@ -17,7 +17,7 @@ class Admin
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth::guard('admin')->check()) {
-            return redirect('admin/login');
+            return redirect('login')->with('error_message', 'Anda tidak memiliki izin untuk mengakses halaman ini.');
         }
         return $next($request);
     }

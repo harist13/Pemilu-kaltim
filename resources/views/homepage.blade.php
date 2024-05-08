@@ -37,7 +37,7 @@
     <img class="w-[35px] h-[43px] left-[20px] top-[8px] absolute" src="{{ URL('asset/1.png') }}" />
     <div class="left-[75px] top-[25px] absolute text-neutral-700 text-sm font-medium font-['Lato'] capitalize leading-9">Provinsi Kalimantan Timur</div>
     <div class="w-[286px] left-[75px] top-[5px] absolute text-sky-500 font-black font-['Lato'] capitalize leading-9">Badan Kesatuan Bangsa dan Politik</div>
-     <a href="{{ url('admin/login') }}" class="absolute left-[1250px] top-[5px] w-[80px] py-1 px-4 bg-sky-500 text-white font-bold text-lg leading-9 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-50 focus:ring-opacity-50 rounded-md">
+     <a href="{{ url('login') }}" class="absolute left-[1250px] top-[5px] w-[80px] py-1 px-4 bg-sky-500 text-white font-bold text-lg leading-9 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-50 focus:ring-opacity-50 rounded-md">
     Login
 </a>
 

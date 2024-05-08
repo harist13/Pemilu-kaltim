@@ -26,7 +26,7 @@
             <img src="{{ url('asset/1.png') }}" alt="Logo" class="w-20 h-25 mt-5">
         </div>
         <div class="px-6 py-8">
-            <form method="POST" action="{{ url('admin/login')}}" class="space-y-5">
+            <form method="POST" action="{{ url('login')}}" class="space-y-5">
                 @csrf
                 <div>
                     <label for="email" class="block text-sm font-medium text-gray-700">Email</label>

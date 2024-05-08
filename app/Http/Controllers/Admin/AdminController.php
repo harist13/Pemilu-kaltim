@@ -3,35 +3,44 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Admin;
 use Auth;
 
 class AdminController extends Controller
 {
     // Tambahkan method dan logika bisnis Anda di sini
    
-   public function login(Request $request)
-{
-    if ($request->isMethod('post')) {
-        $data = $request->all();
-        // Lakukan validasi email dan password
-        $credentials = ['email' => $data['email'], 'password' => $data['password']];
-        // Lakukan autentikasi berdasarkan role 'admin'
-        if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect('admin/dashboard');
-        }
-        // Lakukan autentikasi berdasarkan role 'pegawai'
-        if (Auth::guard('pegawai')->attempt($credentials)) {
-            return redirect('pegawai/dashboard');
-        }
-        // Lakukan autentikasi berdasarkan role 'masyarakat'
-        if (Auth::guard('masyarakat')->attempt($credentials)) {
-            return redirect('masyarakat/dashboard');
-        }
-        // Jika tidak ada role yang cocok, kembalikan ke halaman login dengan pesan error
-        return redirect()->back()->with('error_message', 'Email dan password salah');
+ public function registerForm()
+    {
+          $user = Auth::guard('admin')->user(); // Mendapatkan data pengguna yang sedang login
+    return view('admin.register', ['user' => $user]);
     }
-    return view('admin.login');
-}
+
+    public function register(Request $request)
+    {
+        if ($request->isMethod('post')) {
+            $data = $request->validate([
+                'nama' => 'required|string|max:255',
+                'email' => 'required|email|unique:admins',
+                'password' => 'required|string|min:6|confirmed',
+                'role' => 'required|in:admin,pegawai,masyarakat',
+            ]);
+
+            Admin::create([
+                'nama' => $data['nama'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'role' => $data['role'],
+            ]);
+
+            return redirect('admin/dashboard');
+           
+        }
+
+        return view('admin.register');
+    }
+
 
 public function pegawaiDashboard()
 {
@@ -49,7 +58,7 @@ public function masyarakatDashboard()
     public function logout()
     {
         Auth::guard('admin')->logout();
-        return redirect('admin/login');
+        return redirect('login');
     }
 
     public function dashboard()

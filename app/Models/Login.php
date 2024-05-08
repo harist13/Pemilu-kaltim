@@ -6,11 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\Laravel\Auth\User as Authenticatable;
 use Mongodb\Laravel\Eloquent\Model as Model;
 
-class Admin extends Authenticatable
+class Login extends Authenticatable
 {
     use HasFactory;
-    protected $guard = 'admin';
-
 
 
     protected $fillable = [
